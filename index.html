@@ -1,1 +1,56 @@
-afafafafafafafafaf
+class CarroAntigo:
+    def __init__(self, modelo, ano, motor_original_cc, potencia_hp):
+        self.modelo = modelo
+        self.ano = ano
+        self.motor_cc = motor_original_cc
+        self.potencia_hp = potencia_hp
+        self.modificacoes = []
+
+    def aplicar_bore_kit(self, novas_cc):
+        """Aumenta a cilindrada do motor (Bore Kit)"""
+        aumento_percentual = (novas_cc - self.motor_cc) / self.motor_cc
+        self.motor_cc = novas_cc
+        # Estimativa simples de ganho de potência proporcional
+        self.potencia_hp += int(self.potencia_hp * aumento_percentual)
+        self.modificacoes.append(f"Bore Kit ({novas_cc}cc)")
+        print(f"[+] Bore Kit instalado! Nova cilindrada: {self.motor_cc}cc")
+
+    def instalar_turbo(self, pressao_bar):
+        """Adiciona um kit turbo ao motor"""
+        # Estimativa aproximada: cada 0.1 bar adiciona ~7% de potência
+        ganho = self.potencia_hp * (pressao_bar * 0.7)
+        self.potencia_hp += int(ganho)
+        self.modificacoes.append(f"Kit Turbo ({pressao_bar} bar)")
+        print(f"[+] Kit Turbo instalado com {pressao_bar} bar de pressão!")
+
+    def exibi_ficha_tecnica(self):
+        print("\n" + "="*30)
+        print(f"FICHA TÉCNICA: {self.modelo} ({self.ano})")
+        print("="*30)
+        print(f"Cilindrada: {self.motor_cc}cc")
+        print(f"Potência estimada: {self.potencia_hp} HP")
+        print("Modificações feitas:")
+        if not self.modificacoes:
+            print(" - Nenhuma (Original)")
+        else:
+            for mod in self.modificacoes:
+                print(f" - {mod}")
+        print("="*30)
+
+
+# --- Executando o Projeto ---
+if __name__ == "__main__":
+    # Exemplo: Fusca 1300 original
+    meu_carro = CarroAntigo("VW Fusca", 1975, motor_original_cc=1300, potencia_hp=46)
+
+    # Ficha inicial
+    meu_carro.exibi_ficha_tecnica()
+
+    # 1. Aplicando Bore Kit para aumentar para 1600cc
+    meu_carro.aplicar_bore_kit(novas_cc=1600)
+
+    # 2. Instalando Kit Turbo com 0.8 bar
+    meu_carro.instalar_turbo(pressao_bar=0.8)
+
+    # Ficha técnica final atualizada
+    meu_carro.exibi_ficha_tecnica()
