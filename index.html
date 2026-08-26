@@ -1,56 +1,194 @@
-class CarroAntigo:
-    def __init__(self, modelo, ano, motor_original_cc, potencia_hp):
-        self.modelo = modelo
-        self.ano = ano
-        self.motor_cc = motor_original_cc
-        self.potencia_hp = potencia_hp
-        self.modificacoes = []
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apex Luxury Motors | Blog</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">APEX <span>LUXURY</span></div>
+    <nav>
+      <a href="#home">Início</a>
+      <a href="#posts">Modelos</a>
+      <a href="#sobre">Sobre</a>
+    </nav>
+  </header>
 
-    def aplicar_bore_kit(self, novas_cc):
-        """Aumenta a cilindrada do motor (Bore Kit)"""
-        aumento_percentual = (novas_cc - self.motor_cc) / self.motor_cc
-        self.motor_cc = novas_cc
-        # Estimativa simples de ganho de potência proporcional
-        self.potencia_hp += int(self.potencia_hp * aumento_percentual)
-        self.modificacoes.append(f"Bore Kit ({novas_cc}cc)")
-        print(f"[+] Bore Kit instalado! Nova cilindrada: {self.motor_cc}cc")
+  <section class="hero" id="home">
+    <h1>Superesportivos de Alta Performance</h1>
+    <p>Engenharia extrema, design exclusivo e velocidade sem limites.</p>
+  </section>
 
-    def instalar_turbo(self, pressao_bar):
-        """Adiciona um kit turbo ao motor"""
-        # Estimativa aproximada: cada 0.1 bar adiciona ~7% de potência
-        ganho = self.potencia_hp * (pressao_bar * 0.7)
-        self.potencia_hp += int(ganho)
-        self.modificacoes.append(f"Kit Turbo ({pressao_bar} bar)")
-        print(f"[+] Kit Turbo instalado com {pressao_bar} bar de pressão!")
+  <main class="container" id="posts">
+    <h2>Destaques da Semana</h2>
+    <div class="grid-posts">
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80" alt="Ferrari SF90">
+        <div class="card-content">
+          <span class="tag">Híbrido</span>
+          <h3>Ferrari SF90 Stradale</h3>
+          <p>Com 1.000 cv de potência combinada, o SF90 redefine o topo do desempenho automotivo.</p>
+          <a href="#" class="btn">Ler mais</a>
+        </div>
+      </article>
 
-    def exibi_ficha_tecnica(self):
-        print("\n" + "="*30)
-        print(f"FICHA TÉCNICA: {self.modelo} ({self.ano})")
-        print("="*30)
-        print(f"Cilindrada: {self.motor_cc}cc")
-        print(f"Potência estimada: {self.potencia_hp} HP")
-        print("Modificações feitas:")
-        if not self.modificacoes:
-            print(" - Nenhuma (Original)")
-        else:
-            for mod in self.modificacoes:
-                print(f" - {mod}")
-        print("="*30)
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=800&q=80" alt="Lamborghini Aventador">
+        <div class="card-content">
+          <span class="tag">V12 Atmosférico</span>
+          <h3>Lamborghini Aventador Ultimae</h3>
+          <p>O roncador motor V12 em sua forma mais pura e agressiva no design italiano.</p>
+          <a href="#" class="btn">Ler mais</a>
+        </div>
+      </article>
 
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=800&q=80" alt="Porsche 911 GT3 RS">
+        <div class="card-content">
+          <span class="tag">Pista & Rua</span>
+          <h3>Porsche 911 GT3 RS</h3>
+          <p>Aerodinâmica ativa e precisão alemã feita para dominar qualquer circuito.</p>
+          <a href="#" class="btn">Ler mais</a>
+        </div>
+      </article>
+    </div>
+  </main>
 
-# --- Executando o Projeto ---
-if __name__ == "__main__":
-    # Exemplo: Fusca 1300 original
-    meu_carro = CarroAntigo("VW Fusca", 1975, motor_original_cc=1300, potencia_hp=46)
+  <footer>
+    <p>&copy; 2026 Apex Luxury Motors. Todos os direitos reservados.</p>
+  </footer>
+</body>
+</html>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-    # Ficha inicial
-    meu_carro.exibi_ficha_tecnica()
+body {
+  background-color: #0d0d0d;
+  color: #e0e0e0;
+}
 
-    # 1. Aplicando Bore Kit para aumentar para 1600cc
-    meu_carro.aplicar_bore_kit(novas_cc=1600)
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 5%;
+  background-color: #141414;
+  border-bottom: 1px solid #262626;
+}
 
-    # 2. Instalando Kit Turbo com 0.8 bar
-    meu_carro.instalar_turbo(pressao_bar=0.8)
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
 
-    # Ficha técnica final atualizada
-    meu_carro.exibi_ficha_tecnica()
+.logo span {
+  color: #d4af37;
+}
+
+.navbar nav a {
+  color: #ccc;
+  text-decoration: none;
+  margin-left: 1.5rem;
+  transition: color 0.3s;
+}
+
+.navbar nav a:hover {
+  color: #d4af37;
+}
+
+.hero {
+  text-align: center;
+  padding: 5rem 1rem;
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1600&q=80') center/cover;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+
+.container h2 {
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  border-left: 4px solid #d4af37;
+  padding-left: 0.5rem;
+}
+
+.grid-posts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #2a2a2a;
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 1.5rem;
+}
+
+.tag {
+  background-color: #d4af37;
+  color: #000;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.card-content h3 {
+  margin: 0.8rem 0 0.5rem;
+  color: #fff;
+}
+
+.card-content p {
+  color: #aaa;
+  font-size: 0.95rem;
+  margin-bottom: 1.2rem;
+}
+
+.btn {
+  display: inline-block;
+  color: #d4af37;
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform 0.2s;
+}
+
+.btn:hover {
+  transform: translateX(5px);
+}
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  background-color: #141414;
+  color: #666;
+  margin-top: 3rem;
+  border-top: 1px solid #262626;
+}
